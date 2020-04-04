@@ -37,18 +37,13 @@ public class BungeeListener implements Listener{
 			loginField.setAccessible(true);
 			LoginRequest request = (LoginRequest) loginField.get(handle);
 			request.setData(name);
+
+			Field nameField = InitialHandler.class.getDeclaredField("name");
+			nameField.setAccessible(true);
+
+			nameField.set(handle, name);
 			//setFinalStatic(nameField, name, con);
-		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
+		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
